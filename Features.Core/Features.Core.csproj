@@ -4,4 +4,38 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Features\" />
+    <Folder Include="Features\Beneficiary\" />
+    <Folder Include="Features\UserManagement\" />
+    <Folder Include="Features\MemberManagement\" />
+    <Folder Include="Features\Beneficiary\Command\" />
+    <Folder Include="Features\Beneficiary\Messages\" />
+    <Folder Include="Features\Beneficiary\Query\" />
+    <Folder Include="Features\MemberManagement\Command\" />
+    <Folder Include="Features\MemberManagement\Messages\" />
+    <Folder Include="Features\MemberManagement\Query\" />
+    <Folder Include="Features\UserManagement\Command\" />
+    <Folder Include="Features\UserManagement\Messages\" />
+    <Folder Include="Features\UserManagement\Query\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.113" />
+    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.113" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
+  </ItemGroup>
 </Project>

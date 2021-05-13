@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BM.common/BM.common.csproj",
+      "projectUniqueName": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj",
       "projectName": "BM.common",
-      "projectPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BM.common/BM.common.csproj",
+      "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj",
       "packagesPath": "/Users/masheleza-macmini/.nuget/packages/",
-      "outputPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BM.common/obj/",
+      "outputPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/masheleza-macmini/.config/NuGet/NuGet.Config"

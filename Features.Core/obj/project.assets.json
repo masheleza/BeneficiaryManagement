@@ -5997,11 +5997,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/masheleza-macmini/Projects/BeneficairyManagement/Features.Core/Features.Core.csproj",
+      "projectUniqueName": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/Features.Core/Features.Core.csproj",
       "projectName": "Features.Core",
-      "projectPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/Features.Core/Features.Core.csproj",
+      "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/Features.Core/Features.Core.csproj",
       "packagesPath": "/Users/masheleza-macmini/.nuget/packages/",
-      "outputPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/Features.Core/obj/",
+      "outputPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/Features.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/masheleza-macmini/.config/NuGet/NuGet.Config"

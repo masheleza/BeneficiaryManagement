@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uvTc5Mg449ncymQYGCtL+bUe0Z6ko6hikRP9JjIJW5mktCoWUM3W1qGy/RE2218SotIO7kbe+kJwRCh7GULzAQ==",
+  "dgSpecHash": "96zPrJLk3nKvUymRH0Q3wsQimLOSjKVhgiYT10UX67ndNSippCijeH77xFiErhLvg9LK0vhWjvcuGXlIShE8jg==",
   "success": true,
-  "projectFilePath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BeneficiaryManagement.API/BeneficiaryManagement.API.csproj",
+  "projectFilePath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BeneficiaryManagement.API/BeneficiaryManagement.API.csproj",
   "expectedPackageFiles": [
     "/Users/masheleza-macmini/.nuget/packages/entityframework/6.3.0/entityframework.6.3.0.nupkg.sha512",
     "/Users/masheleza-macmini/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",

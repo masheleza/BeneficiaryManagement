@@ -6047,11 +6047,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BeneficiaryManagement.API/BeneficiaryManagement.API.csproj",
+      "projectUniqueName": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BeneficiaryManagement.API/BeneficiaryManagement.API.csproj",
       "projectName": "BeneficiaryManagement.API",
-      "projectPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BeneficiaryManagement.API/BeneficiaryManagement.API.csproj",
+      "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BeneficiaryManagement.API/BeneficiaryManagement.API.csproj",
       "packagesPath": "/Users/masheleza-macmini/.nuget/packages/",
-      "outputPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BeneficiaryManagement.API/obj/",
+      "outputPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BeneficiaryManagement.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/masheleza-macmini/.config/NuGet/NuGet.Config"
@@ -6066,11 +6066,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/masheleza-macmini/Projects/BeneficairyManagement/BM.common/BM.common.csproj": {
-              "projectPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/BM.common/BM.common.csproj"
+            "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj": {
+              "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj"
             },
-            "/Users/masheleza-macmini/Projects/BeneficairyManagement/Features.Core/Features.Core.csproj": {
-              "projectPath": "/Users/masheleza-macmini/Projects/BeneficairyManagement/Features.Core/Features.Core.csproj"
+            "/Users/masheleza-macmini/Projects/BeneficiaryManagement/Features.Core/Features.Core.csproj": {
+              "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/Features.Core/Features.Core.csproj"
             }
           }
         }

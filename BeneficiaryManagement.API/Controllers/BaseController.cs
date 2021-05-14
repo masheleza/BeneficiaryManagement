@@ -23,7 +23,7 @@ namespace BeneficiaryManagement.API.Controllers
             });
 
         private readonly TelemetryClient _telemetryClient;
-        private readonly IConfiguration _configuration;
+        protected readonly IConfiguration _configuration;
 
         public BMDatabaseContext DbContext { get; }
         public IMediator Mediator { get; }

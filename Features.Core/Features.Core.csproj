@@ -21,6 +21,7 @@
     <Folder Include="Features\UserManagement\Query\" />
     <Folder Include="Repository\" />
     <Folder Include="Services\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />

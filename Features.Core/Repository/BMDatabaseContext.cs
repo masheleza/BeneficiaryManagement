@@ -1,4 +1,5 @@
 ﻿using System;
+using BM.common;
 using Features.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,9 +7,12 @@ namespace Features.Core.Repository
 {
     public class BMDatabaseContext: DbContext
     {
+        private readonly IBeneficiaryManagementDbConnection _dbConnection;
         private static bool _created = false;
-        public BMDatabaseContext()
+        public BMDatabaseContext(IBeneficiaryManagementDbConnection dbConnection)
         {
+            _dbConnection = dbConnection;
+
             if (!_created)
             {
                 Database.EnsureDeleted();
@@ -19,7 +23,7 @@ namespace Features.Core.Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("");
+            optionsBuilder.UseSqlite(_dbConnection.ConnectionString);
         }
 
         public DbSet<Roles> Roles { get; set; }

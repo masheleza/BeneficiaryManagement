@@ -1900,6 +1900,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "BM.common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/BM.common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BM.common.dll": {}
+        }
       }
     }
   },
@@ -6396,10 +6406,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "BM.common/1.0.0": {
+      "type": "project",
+      "path": "../BM.common/BM.common.csproj",
+      "msbuildProject": "../BM.common/BM.common.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BM.common >= 1.0.0",
       "MediatR >= 9.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 9.0.0",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.17.0",
@@ -6443,7 +6459,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj": {
+              "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

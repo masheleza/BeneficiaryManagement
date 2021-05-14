@@ -209,7 +209,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj": {
+                "projectPath": "/Users/masheleza-macmini/Projects/BeneficiaryManagement/BM.common/BM.common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -235,6 +239,10 @@
               "version": "[2.17.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[5.0.6, )"
             },

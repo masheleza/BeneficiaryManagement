@@ -50,6 +50,7 @@ export class EditBeneficiaryComponent implements OnInit {
   }
 
   saveUseCode() {
+    if (this._uiService.confirm('Are you sure?','Update Beneficiary')){
     this.updateBenef.Id = this.editBenefForm.value['Id'];
     this.updateBenef.Name = this.editBenefForm.value['Name'];
     this.updateBenef.AccountNumber = this.editBenefForm.value['AccountNumber'];
@@ -67,10 +68,10 @@ export class EditBeneficiaryComponent implements OnInit {
           this._uiService.toast('Something went wrong while saving, please try again or contact administrator');
         }
         this.dialogRef.close();
-        this._uiService.hideLoading();
+        this._uiService.hideLoading();        
       });
-
       this._router.navigateByUrl('/Home');
+    }
   }
 
 }

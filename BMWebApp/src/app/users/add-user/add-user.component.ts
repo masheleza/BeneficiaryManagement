@@ -48,25 +48,26 @@ export class AddUserComponent implements OnInit {
   }
 
   saveUser(){
-    this._uiService.showLoading('Saving please wait....');
-    this.userDetails.UserName = this.addUserForm.value.UserName;
-    this.userDetails.FirstName = this.addUserForm.value.FirstName;
-    this.userDetails.Surname = this.addUserForm.value.Surname;
-    this.userDetails.Password = this.addUserForm.value.Password;
-    this.userDetails.IsActive = this.addUserForm.value.IsActive;
-    this.userDetails.IsAdmin = this.addUserForm.value.IsAdmin;
+    if (this._uiService.confirm('Are you sure?','Adding user')){
+      this._uiService.showLoading('Saving please wait....');
+      this.userDetails.UserName = this.addUserForm.value.UserName;
+      this.userDetails.FirstName = this.addUserForm.value.FirstName;
+      this.userDetails.Surname = this.addUserForm.value.Surname;
+      this.userDetails.Password = this.addUserForm.value.Password;
+      this.userDetails.IsActive = this.addUserForm.value.IsActive;
+      this.userDetails.IsAdmin = this.addUserForm.value.IsAdmin;
 
-    this.userRequest.User = this.userDetails;
+      this.userRequest.User = this.userDetails;
     
-    this._userService.AddUser(this.userRequest).subscribe((result) => {
+      this._userService.AddUser(this.userRequest).subscribe((result) => {
           if (result.Success) {
             this._uiService.snack('User has been successfully Added');
           } else {
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
           }});
         this._uiService.hideLoading();
+    }
   }
-
   onNoClick() {
     this._router.navigateByUrl('/Home');
   }

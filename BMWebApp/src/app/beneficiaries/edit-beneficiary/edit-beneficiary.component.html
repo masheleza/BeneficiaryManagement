@@ -14,7 +14,7 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Account Number:</mat-label>
-      <input matInput type="text" formControlName="AccountNumber" class="form-control" (blur)="validateBeneficiary()"/>
+      <input matInput type="text" formControlName="AccountNumber" class="form-control"/>
       <mat-error>
         <span *ngIf="!editBenefForm.get('AccountNumber').valid && editBenefForm.get('AccountNumber').touched">Account Number is required</span>
       </mat-error>
@@ -23,7 +23,7 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Reference:</mat-label>
-      <input matInput type="text" formControlName="Reference" class="form-control" (blur)="validateBeneficiary()"/>
+      <input matInput type="text" formControlName="Reference" class="form-control"/>
       <mat-error>
         <span *ngIf="!editBenefForm.get('Reference').valid && editBenefForm.get('Reference').touched">Reference is required</span>
       </mat-error>

@@ -42,46 +42,27 @@ export class AddBeneficiaryComponent implements OnInit {
   }
 
   saveBeneficiary(){
-    this._uiService.showLoading('Saving, please wait....');
-    this.benefDetails.Name = this.addBeneficiaryForm.value.Name;
-    this.benefDetails.AccountNumber = this.addBeneficiaryForm.value.AccountNumber;
-    this.benefDetails.Reference = this.addBeneficiaryForm.value.Reference;
-    this.benefDetails.MainMemberId = this.addBeneficiaryForm.value.MainMemberId;
+    if (this._uiService.confirm('Are you sure?','Add Beneficiary')){
+      this._uiService.showLoading('Saving, please wait....');
+      this.benefDetails.Name = this.addBeneficiaryForm.value.Name;
+      this.benefDetails.AccountNumber = this.addBeneficiaryForm.value.AccountNumber;
+      this.benefDetails.Reference = this.addBeneficiaryForm.value.Reference;
+      this.benefDetails.MainMemberId = this.addBeneficiaryForm.value.MainMemberId;
 
-    this.benefRequest.Beneficary = this.benefDetails;
+      this.benefRequest.Beneficary = this.benefDetails;
 
-    const benef = this.benefExists();
-
-    if (benef !== undefined && benef.AccountNumber !== null ) {
-      this.benefRequest.Beneficary.MainMemberId = this.userId;
-      this._benefService.UpdateBeneficiary(this.benefRequest).subscribe((result) => {
-          if (result.Success) {
-            this._uiService.snack('User has been successfully updated');
-          } else {
-            this._uiService.toast('Something went wrong while saving, please try again or contact system support');
-          }
-          this._uiService.hideLoading();
-        });
-      } else {
-        this._benefService.AddBeneficiary(this.benefRequest).subscribe((result) => {
+      this._benefService.AddBeneficiary(this.benefRequest).subscribe((result) => {
           if (result.Success) {
             this._uiService.snack('User has been successfully Added');
+            this._uiService.hideLoading();
+            this._router.navigateByUrl('/Home');
           } else {
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
+            this._uiService.hideLoading();
           }
-          this._uiService.hideLoading();
-        });
-      }
-  }
-
-  benefExists(): Beneficiary {
-    if (this.benefList.length > 0) {
-      const benef = this.benefList.find(x => x.AccountNumber == this.addBeneficiaryForm.value.AccountNumber);
-      if (benef !== undefined) {
-        return benef;
-      }
+      });    
     }
-  }
+  }  
 
   onNoClick() {
      this._router.navigateByUrl('/Home');

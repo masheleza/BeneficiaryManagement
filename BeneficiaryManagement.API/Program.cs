@@ -12,8 +12,14 @@ namespace BeneficiaryManagement.API
     public class Program
     {
         public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
+        {            
+            CreateHostBuilder(args).ConfigureAppConfiguration(
+                (hostContext, config) =>
+                {
+                    var env = hostContext.HostingEnvironment;
+                    config.AddJsonFile("appsettings.json", false);
+                    config.AddEnvironmentVariables();
+                }).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

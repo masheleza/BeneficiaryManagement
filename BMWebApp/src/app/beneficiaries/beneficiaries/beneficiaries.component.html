@@ -1,0 +1,54 @@
+
+
+
+<div class="formGroup">
+    <p>
+    <mat-label style="font-weight: bold;">Beneficiaries</mat-label>
+  </p>
+  
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Search:</mat-label>
+        <input matInput class="form-control mr-3" (keyup)="searchBeneficiary($event.target.value)" placeholder="Search" type="text">
+      </mat-form-field> 
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-flat-button mat-button color="primary" (click)="addBeneficiary()">Add Beneficiary</button>
+     </p>
+            
+     <div class="table-responsive">
+        <table mat-table class="table-responsive" [dataSource]="benefDataSource" multiTemplateDataRows matSort #benefSort="matSort">
+                  <ng-container matColumnDef="Name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Beneficiary Name</th>
+                  <td mat-cell *matCellDef="let benef">{{benef.Name}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="AccountNumber">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Account Number</th>
+                  <td mat-cell *matCellDef="let benef">{{benef.AccountNumber}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="Reference">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Reference</th>
+                  <td mat-cell *matCellDef="let benef">{{benef.Reference}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Edit">
+                    <th mat-header-cell *matHeaderCellDef style="width: 50px;">Edit</th>
+                    <td mat-cell *matCellDef="let benef" class="text-center">
+                      <button color="info" mat-icon-button aria-label="Edit this Beneficiary" (refreshEmployessEvent)="loadBeneficiaries()" (click)="updateBeneficiary(benef)" title="Click to Edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Delete">
+                    <th mat-header-cell *matHeaderCellDef style="width: 50px;">Delete</th>
+                    <td mat-cell *matCellDef="let benef" class="text-center">
+                      <button color="danger" mat-icon-button aria-label="Edit this Beneficiary" (refreshEmployessEvent)="loadBeneficiaries()" (click)="remove(benef)" title="Click to Edit">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="benefDisplayColumns" class="text-default"></tr>
+                  <tr mat-row *matRowDef="let row; columns: benefDisplayColumns;"></tr>
+                </table>
+      </div>
+    </div>     
+

@@ -1,0 +1,18 @@
+<form class="login-container">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Username:</mat-label>
+      <input matInput placeholder="Enter Username">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input matInput type="password" placeholder="Password" >
+    </mat-form-field>
+  </p>
+  <p> 
+    <button mat-raised-button color="primary" (click)="onSubmit()">login</button>
+    <button mat-button color="primary" (click)="onRegister()">register</button>
+  </p>
+</form>

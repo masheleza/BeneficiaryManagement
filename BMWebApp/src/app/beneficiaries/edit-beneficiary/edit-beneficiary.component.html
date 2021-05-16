@@ -1,0 +1,36 @@
+<form *ngIf="editBenefForm"   [formGroup]="editBenefForm">
+  <p>
+    <mat-label style="font-weight: bold;">Beneficiary Details:</mat-label>
+  </p>
+    <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Name:</mat-label>
+      <input matInput type="text" formControlName="Name" class="form-control"/>
+      <mat-error>
+        <span *ngIf="!editBenefForm.get('Name').valid && editBenefForm.get('Name').touched">Name is required</span>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Account Number:</mat-label>
+      <input matInput type="text" formControlName="AccountNumber" class="form-control" (blur)="validateBeneficiary()"/>
+      <mat-error>
+        <span *ngIf="!editBenefForm.get('AccountNumber').valid && editBenefForm.get('AccountNumber').touched">Account Number is required</span>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Reference:</mat-label>
+      <input matInput type="text" formControlName="Reference" class="form-control" (blur)="validateBeneficiary()"/>
+      <mat-error>
+        <span *ngIf="!editBenefForm.get('Reference').valid && editBenefForm.get('Reference').touched">Reference is required</span>
+      </mat-error>
+    </mat-form-field>
+    </p>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button mat-raised-button color="primary" (click)="saveBeneficiary()" cdkFocusInitial [disabled]="editBenefForm.invalid" (refreshBeneficiariesEvent)="loadBeneficiaries()">Submit</button>
+</div>
+</form>

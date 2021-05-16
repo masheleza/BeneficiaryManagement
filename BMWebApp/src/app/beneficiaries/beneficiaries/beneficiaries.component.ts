@@ -169,6 +169,7 @@ export class BeneficiariesComponent implements OnInit {
       data: {
         Id: benef.Id,
         Name: benef.Name,
+        AccountNumber: benef.AccountNumber,
         Reference: benef.Reference,
         MainMemberId: benef.MainMemberId
       },

@@ -41,8 +41,7 @@ export class AddBeneficiaryComponent implements OnInit {
     });
   }
 
-  saveBeneficiary(){
-    if (this._uiService.confirm('Are you sure?','Add Beneficiary')){
+  saveBeneficiary(){   
       this._uiService.showLoading('Saving, please wait....');
       this.benefDetails.Name = this.addBeneficiaryForm.value.Name;
       this.benefDetails.AccountNumber = this.addBeneficiaryForm.value.AccountNumber;
@@ -60,8 +59,7 @@ export class AddBeneficiaryComponent implements OnInit {
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
             this._uiService.hideLoading();
           }
-      });    
-    }
+      });        
   }  
 
   onNoClick() {

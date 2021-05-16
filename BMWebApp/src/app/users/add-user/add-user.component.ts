@@ -47,8 +47,7 @@ export class AddUserComponent implements OnInit {
     });
   }
 
-  saveUser(){
-    if (this._uiService.confirm('Are you sure?','Adding user')){
+  saveUser(){   
       this._uiService.showLoading('Saving please wait....');
       this.userDetails.UserName = this.addUserForm.value.UserName;
       this.userDetails.FirstName = this.addUserForm.value.FirstName;
@@ -65,8 +64,7 @@ export class AddUserComponent implements OnInit {
           } else {
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
           }});
-        this._uiService.hideLoading();
-    }
+        this._uiService.hideLoading();    
   }
   onNoClick() {
     this._router.navigateByUrl('/Home');

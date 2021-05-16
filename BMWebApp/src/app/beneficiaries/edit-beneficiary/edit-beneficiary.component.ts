@@ -43,14 +43,13 @@ export class EditBeneficiaryComponent implements OnInit {
     this.editBenefForm = this._formBuilder.group({
       Id: [this.data['Id']],
       Name: [this.data['Name']],
-      AccountNumber: [this.data['AccountNumber'], Validators.required],
-      Reference: [this.data['Reference'], Validators.required],
+      AccountNumber: [this.data['AccountNumber'], [Validators.required,Validators.minLength(9)]],
+      Reference: [this.data['Reference'], [Validators.required,Validators.minLength(3)]],
       MainMemberId: [this.data['MainMemberId']]
     });
   }
 
-  saveUseCode() {
-    if (this._uiService.confirm('Are you sure?','Update Beneficiary')){
+  saveBeneficiary() {   
     this.updateBenef.Id = this.editBenefForm.value['Id'];
     this.updateBenef.Name = this.editBenefForm.value['Name'];
     this.updateBenef.AccountNumber = this.editBenefForm.value['AccountNumber'];
@@ -72,6 +71,4 @@ export class EditBeneficiaryComponent implements OnInit {
       });
       this._router.navigateByUrl('/Home');
     }
-  }
-
 }

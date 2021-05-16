@@ -28,6 +28,15 @@ Add Beneficiary
 
 ![Screenshot 2021-05-16 at 00 51 41](https://user-images.githubusercontent.com/4394460/118380402-b9898a80-b5e1-11eb-855a-c122b657186d.png)
 
+Add Beneficiary with 1 invalid filed
+
+![Screenshot 2021-05-16 at 17 06 50](https://user-images.githubusercontent.com/4394460/118402228-504d5a00-b669-11eb-88c5-24acd3154dd2.png)
+
+Add Beneficiary with Valid Data
+
+![Screenshot 2021-05-16 at 17 06 25](https://user-images.githubusercontent.com/4394460/118402250-665b1a80-b669-11eb-87ef-1bbc367540ac.png)
+
+
 Register user
 
 ![Screenshot 2021-05-16 at 00 51 16](https://user-images.githubusercontent.com/4394460/118380385-9e1e7f80-b5e1-11eb-8478-0db3d02dc4b2.png)

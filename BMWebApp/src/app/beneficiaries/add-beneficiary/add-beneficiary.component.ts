@@ -34,9 +34,9 @@ export class AddBeneficiaryComponent implements OnInit {
     });
 
     this.addBeneficiaryForm = this._formBuilder.group({
-      Name:['', Validators.required, Validators.minLength(5), Validators.maxLength(50)],
-      AccountNumber:['',Validators.required, Validators.minLength(9), Validators.maxLength(20)],
-      Reference:['',Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+      Name:['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      AccountNumber:['',[Validators.required, Validators.minLength(9), Validators.maxLength(20)]],
+      Reference:['',[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       MainMemberId:[this.userId]
     });
   }

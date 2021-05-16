@@ -37,11 +37,11 @@ export class AddUserComponent implements OnInit {
     });
 
     this.addUserForm = this._formBuilder.group({
-      UserName: ['',Validators.required, Validators.minLength(5), Validators.maxLength(50)],
-      FirstName: ['',Validators.required, Validators.minLength(5), Validators.maxLength(50)],
-      Surname: ['',Validators.required, Validators.minLength(5), Validators.maxLength(50)],
-      Password: ['',Validators.required, Validators.minLength(8), Validators.maxLength(50)],
-      ConfirmPassword: ['',Validators.required, Validators.minLength(8), Validators.maxLength(50)],
+      UserName: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      FirstName: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      Surname: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      Password: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
+      ConfirmPassword: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
       IsActive: [true],
       IsAdmin: [false]
     });

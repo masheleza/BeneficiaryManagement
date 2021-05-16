@@ -1,14 +1,14 @@
-<form class="login-container">
+<form *ngIf="loginForm"   [formGroup]="loginForm" class="login-container">
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Username:</mat-label>
-      <input matInput placeholder="Enter Username">
+      <input matInput formControlName="username" placeholder="Enter Username">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Enter your password</mat-label>
-      <input matInput type="password" placeholder="Password" >
+      <input matInput type="password" formControlName="password" placeholder="Password" >
     </mat-form-field>
   </p>
   <p> 

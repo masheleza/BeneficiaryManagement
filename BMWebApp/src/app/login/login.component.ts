@@ -52,17 +52,21 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit() {
+    console.log("hello");
     this.submitted = true;
     if (this.loginForm.invalid) {
           return;
       } else {
+        console.log("hello valid");
         this.loading = true;
         this.loginRequest.UserName = this.formCont.username.value;
         this.loginRequest.Password = this.formCont.password.value;
-
+        console.log(`${this.loginRequest.UserName}`);
         this._authService.login(this.loginRequest).subscribe((result) => {
           if (result && result.Data.token ) {
             this._router.navigate([this.returnUrl]);
+            this._uiService.hideLoading();
+            this._router.navigateByUrl('/');
           } else {
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
             this._uiService.hideLoading();

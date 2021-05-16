@@ -16,7 +16,7 @@ using Features.Core.Features.Beneficiary.Messages;
 
 namespace BeneficiaryManagement.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class BeneficiaryController : BaseController

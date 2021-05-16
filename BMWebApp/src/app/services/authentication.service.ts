@@ -33,7 +33,7 @@ logout() {
 }
 
   login(loginRequest: LoginRequest): Observable<any> {
-    return this._http.post<ApiResult<Useraccount>>(`${this.baseApiUrl}/api/authentication/login`,loginRequest)
+    return this._http.post<ApiResult<Useraccount>>(`${this.baseApiUrl}/api/Authentication/login`,loginRequest)
     .pipe(map(user => {
       if (user && user.Data.token){
         localStorage.setItem('currentUser',JSON.stringify(user));

@@ -48,7 +48,7 @@ namespace BeneficiaryManagement.API.Controllers
 
         [HttpPost]
         [Route("GetAllUsers")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAll()
         {
             using (var opTelemery = _telemetryClient.StartOperation<RequestTelemetry>("GetAllUsers"))

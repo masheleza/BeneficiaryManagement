@@ -63,9 +63,8 @@ export class AddUserComponent implements OnInit {
             this._uiService.snack('User has been successfully Added');
           } else {
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
-          }
-          this._uiService.hideLoading();
-        });
+          }});
+        this._uiService.hideLoading();
   }
 
   onNoClick() {

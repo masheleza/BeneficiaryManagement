@@ -36,7 +36,7 @@ namespace BeneficiaryManagement.API.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("login")]
+        [Route("login")]        
         public async Task<IActionResult> Post([FromBody] LoginRequest request)
         {
             using (var opTelemery = _telemetryClient.StartOperation<RequestTelemetry>("Login"))

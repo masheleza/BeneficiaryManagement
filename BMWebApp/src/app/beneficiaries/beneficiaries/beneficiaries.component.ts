@@ -35,36 +35,36 @@ export class BeneficiariesComponent implements OnInit {
     {
       Id: 1,
       Name: 'Celestine',
-      AccountNumber: 'Schimmel',
-      Reference: '7687 Jadon Port',
+      AccountNumber: '0933232323',
+      Reference: 'JadPort',
       MainMemberId: 1
     },
     {
       Id: 1,
       Name: 'Johan',
-      AccountNumber: 'Ziemann PhD',
-      Reference: '156 Streich Ports',
+      AccountNumber: '096503233',
+      Reference: 'StrePorts',
       MainMemberId: 1
       },
     {
       Id: 1,
       Name: 'Lizzie',
-      AccountNumber: 'Schumm',
-      Reference: '5203 Jordon Center',
+      AccountNumber: '1093236343',
+      Reference: 'JorCenter',
       MainMemberId: 1
     },
     {
       Id: 1,
       Name: 'Gavin',
-      AccountNumber: 'Leannon',
-      Reference: '91057 Davion Club',
+      AccountNumber: '10298730433',
+      Reference: 'DavClub',
       MainMemberId: 1
     },
     {
       Id: 1,
       Name: 'Lucious',
-      AccountNumber: 'Leuschke',
-      Reference: '16288 Reichel Harbor',
+      AccountNumber: '9503703423',
+      Reference: 'ReiHarbor',
       MainMemberId: 1
     }
   ];

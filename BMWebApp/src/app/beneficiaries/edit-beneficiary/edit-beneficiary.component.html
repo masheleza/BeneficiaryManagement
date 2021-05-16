@@ -14,7 +14,7 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Account Number:</mat-label>
-      <input matInput type="text" formControlName="AccountNumber" class="form-control"/>
+      <input matInput type="number" formControlName="AccountNumber" class="form-control"/>
       <mat-error>
         <span *ngIf="!editBenefForm.get('AccountNumber').valid && editBenefForm.get('AccountNumber').touched">Account Number is required</span>
       </mat-error>

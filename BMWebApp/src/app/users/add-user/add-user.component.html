@@ -1,0 +1,56 @@
+<form *ngIf="addUserForm" [formGroup]="addUserForm">
+  <div mat-dialog-content>
+    <p>
+      <mat-label style="font-weight: bold;">User Details:</mat-label>
+    </p>
+      <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username:</mat-label>
+        <input matInput type="text" formControlName="UserName" class="form-control" (blur)="validateUser()"/>
+        <mat-error>
+          <span *ngIf="!addUserForm.get('UserName').valid && addUserForm.get('UserName').touched">UserName is required</span>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>FirstName:</mat-label>
+        <input matInput type="text" formControlName="FirstName" class="form-control"/>
+        <mat-error>
+          <span *ngIf="!addUserForm.get('FirstName').valid && addUserForm.get('FirstName').touched">FirstName is required</span>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Surname:</mat-label>
+        <input matInput type="text" formControlName="Surname" class="form-control" />
+        <mat-error>
+          <span *ngIf="!addUserForm.get('Surname').valid && addUserForm.get('Surname').touched">Surname is required</span>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password:</mat-label>
+        <input matInput type="password" formControlName="Password" class="form-control"/>
+        <mat-error>
+          <span *ngIf="!addUserForm.get('Password').valid && addUserForm.get('Password').touched">Password is required</span>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password:</mat-label>
+        <input matInput type="password" formControlName="ConfirmPassword" class="form-control" />
+        <mat-error>
+          <span *ngIf="!addUserForm.get('ConfirmPassword').valid && addUserForm.get('ConfirmPassword').touched">ConfirmPassword is required and must match Password!</span>
+        </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button  mat-raised-button color="primary" (click)="saveUser()" cdkFocusInitial [disabled]="addUserForm.invalid"> Submit</button>
+  </div>
+</form>

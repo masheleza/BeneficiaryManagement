@@ -31,6 +31,7 @@ namespace Features.Core.Features.Beneficiary.Command
                 try
                 {
                     await _bMDatabase.Beneficiaries.AddAsync(request.Beneficiary);
+                    _bMDatabase.SaveChanges();
                     result = new ApiResult<AddBeneficiaryCommandResponse>()
                     {
                         Success = true,

@@ -32,6 +32,7 @@ namespace Features.Core.Features.Beneficiary.Command
                 try
                 {
                     _bMDatabase.Beneficiaries.Update(request.Beneficiary);
+                    _bMDatabase.SaveChanges();
                     result = new ApiResult<UpdateBeneficiaryCommandResponse>()
                     {
                         Success = true,

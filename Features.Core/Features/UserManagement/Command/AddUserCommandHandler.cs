@@ -31,6 +31,7 @@ namespace Features.Core.Features.UserManagement.Command
                 try
                 {
                     await _bMDatabase.UserAccounts.AddAsync(request.User);
+                    _bMDatabase.SaveChanges();
                     result = new ApiResult<UserAddCommandResponse>()
                     {
                         Success = true,

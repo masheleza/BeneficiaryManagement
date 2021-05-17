@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-   serviceBaseUrl: 'https://cors-anywhere.herokuapp.com/http://localhost:5001'  
+   serviceBaseUrl: 'https://localhost:5001'  
 };
 
 /*

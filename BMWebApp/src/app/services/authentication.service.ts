@@ -5,14 +5,15 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApiResult } from '../models/api-result';
 import { LoginRequest } from '../models/request';
-import { Useraccount } from '../models/useraccount';
+import { UserAccount } from '../models/useraccount';
+import { UserRequest } from '../models/request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   baseApiUrl = environment.serviceBaseUrl;
-  private currentUserSubject: BehaviorSubject<Useraccount>;
+  private currentUserSubject: BehaviorSubject<UserAccount>;
   public currentUser: Observable<any>;
 
   constructor(
@@ -22,7 +23,7 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): Useraccount {
+  public get currentUserValue(): UserAccount {
     return this.currentUserSubject.value;
   }
 
@@ -33,11 +34,12 @@ logout() {
 }
 
   login(loginRequest: LoginRequest): Observable<any> {
-    return this._http.post<ApiResult<Useraccount>>(`${this.baseApiUrl}/api/Authentication/login`,loginRequest)
+    return this._http.post<ApiResult<UserRequest>>(`${this.baseApiUrl}/api/Authentication/login`,loginRequest)
     .pipe(map(user => {
-      if (user && user.Data.token){
+      if (user && user.Data){
+        console.log(JSON.stringify(user));
         localStorage.setItem('currentUser',JSON.stringify(user));
-        this.currentUserSubject.next(user.Data);
+        this.currentUserSubject.next(user.Data.User);
       }
     }));
   }

@@ -80,7 +80,7 @@ namespace BeneficiaryManagement.API.Controllers
 
                 var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return Ok(new { token = tokenValue });
+                return Ok(new { token = tokenValue , user = user });
             }
         }
     }

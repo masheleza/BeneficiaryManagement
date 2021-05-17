@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BM.common;
@@ -10,6 +9,8 @@ using Features.Core.Repository;
 using MediatR;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
+using System.Data.SQLite.Linq;
+using System.Linq;
 
 namespace Features.Core.Features.UserManagement.Query
 {
@@ -33,13 +34,11 @@ namespace Features.Core.Features.UserManagement.Query
             {
                 try
                 {
-                    var user = _bMDatabase.UserAccounts.Where(x => x.UserName.ToLowerInvariant() == request.LoginRequest.Username.ToLowerInvariant()
-                                && x.Password == request.LoginRequest.Password).FirstOrDefault();
+                    var user = _bMDatabase.UserAccounts.Where(x => x.UserName == request.LoginRequest.Username && x.Password == request.LoginRequest.Password).FirstOrDefault();
 
                     if (user != null)
                     {
                         respnse.UserAccount = user;
-
                         result = new ApiResult<LoginQueryResponse>()
                         {
                             Data = respnse,

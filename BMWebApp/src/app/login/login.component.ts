@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginRequest } from '../models/request';
-import { Useraccount } from '../models/useraccount';
+import { UserAccount } from '../models/useraccount';
 import { AuthenticationService } from '../services/authentication.service';
 import { UiMsgService } from '../services/ui-msg.service';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   authenticationService: any;
   loginRequest = new LoginRequest();
-  private currentUserSubject: BehaviorSubject<Useraccount>;
+  private currentUserSubject: BehaviorSubject<UserAccount>;
 
   constructor(
     private _formBulder: FormBuilder,
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       password: ['',Validators.required]
     });
 
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/Home';
   }
   
   get formCont() {
@@ -63,14 +63,19 @@ export class LoginComponent implements OnInit {
         this.loginRequest.Password = this.formCont.password.value;
         console.log(`${this.loginRequest.UserName}`);
         this._authService.login(this.loginRequest).subscribe((result) => {
+           console.log(JSON.stringify(result));
           if (result && result.Data.token ) {
+            console.log(`${result.Data.token}`);
             this._router.navigate([this.returnUrl]);
             this._uiService.hideLoading();
-            this._router.navigateByUrl('/');
+            this._router.navigateByUrl('/Home');
           } else {
+            console.log(`${result.Data.token}`);
             this._uiService.toast('Something went wrong while saving, please try again or contact system support');
             this._uiService.hideLoading();
           }
+        }, (err) => {
+          console.log(err)
         });
       }
 }

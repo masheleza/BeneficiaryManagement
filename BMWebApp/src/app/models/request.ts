@@ -1,8 +1,8 @@
 import { Beneficiary } from "./beneficiary";
-import { Useraccount } from "./useraccount";
+import { UserAccount } from "./useraccount";
 
 export class UserRequest {
-    User: Useraccount;
+    User: UserAccount;
   }
   
   export class BeneficiaryRequest {

@@ -6419,8 +6419,10 @@
       "MediatR >= 9.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 9.0.0",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.17.0",
+      "Microsoft.Data.Sqlite.Core >= 5.0.6",
       "Microsoft.EntityFrameworkCore >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.6",
+      "Microsoft.EntityFrameworkCore.Sqlite.Core >= 5.0.6",
       "Microsoft.Extensions.DependencyInjection >= 5.0.1",
       "Newtonsoft.Json >= 13.0.1",
       "Swashbuckle.AspNetCore >= 6.1.4",
@@ -6488,11 +6490,19 @@
             "target": "Package",
             "version": "[2.17.0, )"
           },
+          "Microsoft.Data.Sqlite.Core": {
+            "target": "Package",
+            "version": "[5.0.6, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[5.0.6, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
+            "target": "Package",
+            "version": "[5.0.6, )"
+          },
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": {
             "target": "Package",
             "version": "[5.0.6, )"
           },

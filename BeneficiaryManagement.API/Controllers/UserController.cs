@@ -46,7 +46,7 @@ namespace BeneficiaryManagement.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetAllUsers")]
         //[Authorize]
         public async Task<IActionResult> GetAll()

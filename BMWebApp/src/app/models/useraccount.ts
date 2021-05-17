@@ -1,4 +1,4 @@
-export class Useraccount {
+export class UserAccount {
     Id: number;
     UserName: string;
     FirstName: string;
@@ -6,5 +6,4 @@ export class Useraccount {
     Password: string;
     IsActive: boolean;
     IsAdmin: boolean;
-    token: string;
 }

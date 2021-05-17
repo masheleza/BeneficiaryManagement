@@ -1,7 +1,7 @@
-import { Useraccount } from './useraccount';
+import { UserAccount } from './useraccount';
 
 describe('Useraccount', () => {
   it('should create an instance', () => {
-    expect(new Useraccount()).toBeTruthy();
+    expect(new UserAccount()).toBeTruthy();
   });
 });

@@ -11,7 +11,9 @@ using System.IO;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using MediatR;
 using Features.Core.Features.UserManagement.Command;
+using Microsoft.AspNetCore.Mvc.Cors;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BeneficiaryManagement.API
 {
@@ -30,25 +32,33 @@ namespace BeneficiaryManagement.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var appSettings = _Configuration.GetSection("AppSettings");
-            var bMDbConnectionString = _Configuration.GetSection("BMDBContext");
-            
-            services.Configure<AppSettings>(appSettings);
-            services.Configure<BeneficiaryManagementDbConnection>(bMDbConnectionString);
+            services.AddCors(x => x.AddPolicy("defaultPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:4200/", "https://localhost:4200/").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            }));
 
+            services.AddMvc();
+
+            services.AddControllers()
+                .AddNewtonsoftJson(j => j.UseMemberCasing());
+
+
+            var appSettings = new AppSettings();
             var dBContext = new BeneficiaryManagementDbConnection();
-
-            _Configuration.Bind("BMDBContext", dBContext);
+            _Configuration.GetSection("AppSettings").Bind(appSettings);      
+             _Configuration.GetSection("ConnectionStrings").Bind(dBContext);            
+            
+            _Configuration.Bind("ConnectionStrings", dBContext);
             services.AddSingleton(dBContext);
             services.AddSingleton<IBeneficiaryManagementDbConnection>(dBContext);
 
-            services.AddDbContext<BMDatabaseContext>(c => c.UseSqlite(_Configuration.GetConnectionString("BMConnection"), sqliteOptionsAction: sqliteOptions =>
+            services.AddDbContext<BMDatabaseContext>(c => c.UseSqlite(dBContext.ConnectionString, sqliteOptionsAction: sqliteOptions =>
             {
                 sqliteOptions.CommandTimeout(0);                
             }));
 
             services.AddApplicationInsightsTelemetry(s => {
-                s.InstrumentationKey = appSettings.GetValue<string>("InstrumentationKey");
+                s.InstrumentationKey = appSettings.InstrumentationKey;
                 s.EnableDebugLogger = true;
                 s.EnableHeartbeat = true;
                 s.AddAutoCollectedMetricExtractor = true;
@@ -56,16 +66,7 @@ namespace BeneficiaryManagement.API
                 s.EnableQuickPulseMetricStream = true;
             });
 
-            services.AddControllers()
-                .AddNewtonsoftJson(j => j.UseMemberCasing());
-
             services.AddMediatR(typeof(AddUserCommandHandler).GetTypeInfo().Assembly);
-
-            services.AddMvc(mvc =>
-            {
-                mvc.EnableEndpointRouting = true;
-            })
-            .AddControllersAsServices();
 
             services.AddSwaggerGen(sw =>
             {
@@ -76,7 +77,6 @@ namespace BeneficiaryManagement.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 sw.IncludeXmlComments(xmlPath);
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,8 +97,9 @@ namespace BeneficiaryManagement.API
             }
 
             app.UseHttpsRedirection();
-            app.UseRouting();
             app.UseStaticFiles();
+            app.UseRouting();
+            app.UseCors("defaultPolicy");
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

@@ -34,7 +34,8 @@ namespace BeneficiaryManagement.Api.Tests.Controllers
 
 
             _dbContext.Setup(x => x.Set<Beneficiary>()).Returns(_benef.Object);
-          
+            _mediator.Setup(x => x.Send(It.IsAny<AddBeneficiaryCommandRequest>(), new System.Threading.CancellationToken(false)));
+
             _controller = new BeneficiaryController(_mockConfig.Object, _mediator.Object);            
         }
 
@@ -43,11 +44,8 @@ namespace BeneficiaryManagement.Api.Tests.Controllers
         public async Task AddBeneficiary_Success()
         {
             ApiResult<Beneficiary> result = (ApiResult<Beneficiary>)await _controller.Post(BenefDummyData.CreateBeneficiary_Success());
-
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result.Success);
-            Assert.IsNotNull(result.Data);
-            Assert.AreEqual(1, result.Data.Id);
+       
+            _mediator.Verify(x => x.Send(It.IsAny<AddBeneficiaryCommandRequest>(), new System.Threading.CancellationToken(false)));
         }
 
         [TestMethod]

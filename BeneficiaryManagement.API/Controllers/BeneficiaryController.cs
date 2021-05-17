@@ -55,7 +55,7 @@ namespace BeneficiaryManagement.API.Controllers
         {
             using (var opTelemery = _telemetryClient.StartOperation<RequestTelemetry>("UpdateBeneficiary"))
             {
-                if (!ModelState.IsValid)
+                if (!ModelState.IsValid && beneficiary.Id == 0)
                     return BadRequest();
 
                 var model = new UpdateBeneficiaryCommandRequest()
@@ -74,7 +74,7 @@ namespace BeneficiaryManagement.API.Controllers
         {
             using (var opTelemery = _telemetryClient.StartOperation<RequestTelemetry>("RemoveBeneficiary"))
             {
-                if (!ModelState.IsValid)
+                if (!ModelState.IsValid && beneficiary.Id == 0)
                     return BadRequest();
 
                 var model = new DeleteBeneficiaryCommandRequest()

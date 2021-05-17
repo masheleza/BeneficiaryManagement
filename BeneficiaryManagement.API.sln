@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Features.Core", "Features.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BM.common", "BM.common\BM.common.csproj", "{FB14A0CA-F065-4E14-9542-354F9213B469}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeneficiaryManagement.Api.Tests", "BeneficiaryManagement.Api.Tests\BeneficiaryManagement.Api.Tests.csproj", "{A5B8D47A-F412-40F7-886C-E9F03CF3EBAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FB14A0CA-F065-4E14-9542-354F9213B469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB14A0CA-F065-4E14-9542-354F9213B469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB14A0CA-F065-4E14-9542-354F9213B469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B8D47A-F412-40F7-886C-E9F03CF3EBAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B8D47A-F412-40F7-886C-E9F03CF3EBAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B8D47A-F412-40F7-886C-E9F03CF3EBAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B8D47A-F412-40F7-886C-E9F03CF3EBAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

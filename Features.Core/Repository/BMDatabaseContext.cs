@@ -14,8 +14,7 @@ namespace Features.Core.Repository
             _dbConnection = dbConnection;
 
             if (!_created)
-            {
-                Database.EnsureDeleted();
+            {               
                 Database.EnsureCreated();
                 _created = true;
             }

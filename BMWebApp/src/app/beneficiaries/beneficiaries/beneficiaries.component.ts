@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
 import { Beneficiary } from 'src/app/models/beneficiary';
 import { BeneficiaryRequest } from 'src/app/models/request';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BeneficiariesService } from 'src/app/services/beneficiaries.service';
 import { EditBeneficiaryComponent } from '../edit-beneficiary/edit-beneficiary.component';
 
@@ -30,8 +31,9 @@ export class BeneficiariesComponent implements OnInit {
     'Edit',
     'Delete'
   ];
-
-  benefList: Beneficiary[] = [ 
+  benefList: Beneficiary[] = [];
+  
+  benefLisst: Beneficiary[] = [ 
     {
       Id: 1,
       Name: 'Celestine',
@@ -84,6 +86,7 @@ export class BeneficiariesComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _authService: AuthenticationService,
     private _benefService: BeneficiariesService,
     private _changeDetectedRefs: ChangeDetectorRef,
     public dialog: MatDialog
@@ -93,8 +96,18 @@ export class BeneficiariesComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.loadBeneficiaries();
-        this.benefDataSource.data = this.benefList;
+    console.log('Eish!');
+    let reqClone = localStorage.getItem('currentUser');
+    let data = JSON.parse(reqClone);
+    console.log(JSON.stringify(data));
+
+    if (this._authService.currentUserValue === null) {
+      this._router.navigateByUrl('/login');
+    }
+
+    this.userId = this._authService.currentUserValue.Id;
+  //  this.loadBeneficiaries();
+        this.benefDataSource.data = this.benefLisst;
         this.benefDataSource.paginator = this.benefPaginator;
         this.benefDataSource.sort = this.benefSort;
         this._changeDetectedRefs.detectChanges();
@@ -144,7 +157,7 @@ export class BeneficiariesComponent implements OnInit {
     this._benefService.GetUserBeneficiaries(this.userId).subscribe(result => {
       if (result.Success && result.Data.length > 0) {
         this.benefList = result.Data;
-        this.benefDataSource.data = this.benefList;
+        this.benefDataSource.data = this.benefLisst;
         this.benefDataSource.paginator = this.benefPaginator;
         this.benefDataSource.sort = this.benefSort;
         this._changeDetectedRefs.detectChanges();
@@ -186,7 +199,7 @@ export class BeneficiariesComponent implements OnInit {
         this.loadBeneficiaries();
         const benefIndex = this.benefList.findIndex(x => x.AccountNumber == benef.AccountNumber);
         this.benefList.splice(benefIndex,1);
-        this.benefDataSource.data = this.benefList;
+        this.benefDataSource.data = this.benefLisst;
         this.benefDataSource.paginator = this.benefPaginator;
         this.benefDataSource.sort = this.benefSort;
         this._changeDetectedRefs.detectChanges();

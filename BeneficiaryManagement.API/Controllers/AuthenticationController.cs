@@ -80,7 +80,16 @@ namespace BeneficiaryManagement.API.Controllers
 
                 var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return Ok(new { token = tokenValue , user = user });
+                return Ok(new {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    FirstName = user.FirstName,
+                    Surname = user.Surname,
+                    Password = user.Password,
+                    IsActive = user.IsActive,
+                    IsAdmin = user.IsAdmin,
+                    token = tokenValue
+                });
             }
         }
     }

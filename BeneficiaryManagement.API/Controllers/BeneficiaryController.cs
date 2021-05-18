@@ -89,16 +89,16 @@ namespace BeneficiaryManagement.API.Controllers
 
         [HttpGet]
         [Route("GetBeneficiaries")]       
-        public async Task<IActionResult> Get([FromBody] UserAccount user)
+        public async Task<IActionResult> Get(int userId)
         {
             using (var opTelemery = _telemetryClient.StartOperation<RequestTelemetry>("GetBeneficiaries"))
             {
-                if (user?.Id == 0)
+                if (userId == 0)
                     return BadRequest();
 
                 var model = new GetBeneficiariesQueryRequest()
                 {
-                    UserId = user.Id
+                    UserId = userId
                 };
 
                 var response = await Mediator.Send(model);

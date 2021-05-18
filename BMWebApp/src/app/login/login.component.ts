@@ -6,6 +6,7 @@ import { LoginRequest } from '../models/request';
 import { UserAccount } from '../models/useraccount';
 import { AuthenticationService } from '../services/authentication.service';
 import { UiMsgService } from '../services/ui-msg.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,10 @@ export class LoginComponent implements OnInit {
     private _route: ActivatedRoute,
     private _authService: AuthenticationService,
     private _uiService: UiMsgService
-  ) { 
-
-    /*if (this.authenticationService.currentUserValue !== undefined){
-      this._router.navigate(['/']);
-    }*/
+  ) {    
+    if (typeof this._authService.currentUserValue !== 'undefined'){
+      this._router.navigate(['/home']);
+    }
   }
 
   ngOnInit() {
@@ -62,20 +62,16 @@ export class LoginComponent implements OnInit {
         this.loginRequest.UserName = this.formCont.username.value;
         this.loginRequest.Password = this.formCont.password.value;
         console.log(`${this.loginRequest.UserName}`);
-        this._authService.login(this.loginRequest).subscribe((result) => {
-           console.log(JSON.stringify(result));
-          if (result && result.Data.token ) {
-            console.log(`${result.Data.token}`);
+        this._authService.login(this.loginRequest)
+        .pipe(first()).subscribe( result => {
+          console.log("logged in valid");
+           console.log(JSON.stringify(result));          
+            this._uiService.hideLoading();
             this._router.navigate([this.returnUrl]);
-            this._uiService.hideLoading();
-            this._router.navigateByUrl('/Home');
-          } else {
-            console.log(`${result.Data.token}`);
-            this._uiService.toast('Something went wrong while saving, please try again or contact system support');
-            this._uiService.hideLoading();
-          }
         }, (err) => {
           console.log(err)
+          this._uiService.toast('Something went wrong!');
+          this._uiService.hideLoading();          
         });
       }
 }

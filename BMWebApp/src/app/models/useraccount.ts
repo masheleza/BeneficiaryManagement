@@ -6,4 +6,5 @@ export class UserAccount {
     Password: string;
     IsActive: boolean;
     IsAdmin: boolean;
+    token?: string;
 }

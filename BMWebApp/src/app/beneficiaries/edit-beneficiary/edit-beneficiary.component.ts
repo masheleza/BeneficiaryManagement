@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { Beneficiary } from 'src/app/models/beneficiary';
 import { BeneficiaryRequest } from 'src/app/models/request';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BeneficiariesService } from 'src/app/services/beneficiaries.service';
 import { UiMsgService } from 'src/app/services/ui-msg.service';
 
@@ -18,7 +19,7 @@ export class EditBeneficiaryComponent implements OnInit {
   name: string;
   accountNumber: string;
   reference: string;
-
+  userId: number;
   updateBenef: Beneficiary;
   benefRequest = new BeneficiaryRequest();
 
@@ -29,6 +30,7 @@ export class EditBeneficiaryComponent implements OnInit {
     public dialogRef: MatDialogRef<EditBeneficiaryComponent>,
     private _uiService: UiMsgService,
     private _router: Router,
+    private _authService: AuthenticationService,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
 
@@ -37,6 +39,13 @@ export class EditBeneficiaryComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('Eish!');
+    console.log(this._authService.currentUserValue);
+    if (typeof this._authService.currentUserValue === 'undefined' || this._authService.currentUserValue === null) {
+      this._router.navigateByUrl('/login');
+    }
+    this.userId = this._authService.currentUserValue.Id;
+
     this.updateBenef = new Beneficiary();
     this.name = this.data['Name'];
 

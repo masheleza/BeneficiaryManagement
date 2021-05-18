@@ -4,6 +4,7 @@ import { ThemePalette } from '@angular/material';
 import { Router } from '@angular/router';
 import { Beneficiary } from 'src/app/models/beneficiary';
 import { BeneficiaryRequest } from 'src/app/models/request';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BeneficiariesService } from 'src/app/services/beneficiaries.service';
 import { UiMsgService } from 'src/app/services/ui-msg.service';
 
@@ -22,11 +23,18 @@ export class AddBeneficiaryComponent implements OnInit {
 
   constructor(
     private _benefService: BeneficiariesService,
+    private _authService: AuthenticationService,
     private _formBuilder: FormBuilder,
     private _uiService: UiMsgService,
     private _router: Router) { }
 
   ngOnInit() {
+
+    if (typeof this._authService.currentUserValue === 'undefined' || this._authService.currentUserValue === null) {
+      this._router.navigateByUrl('/login');
+    }   
+    console.log(`logeed in user is ${this._authService.currentUserValue.Id}`);
+    this.userId = this._authService.currentUserValue.Id;
     this._benefService.GetUserBeneficiaries(this.userId).subscribe(result => {
       if (result.Success){
         this.benefList = result.Data;
@@ -36,7 +44,7 @@ export class AddBeneficiaryComponent implements OnInit {
     this.addBeneficiaryForm = this._formBuilder.group({
       Name:['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       AccountNumber:['',[Validators.required, Validators.minLength(9), Validators.maxLength(20)]],
-      Reference:['',[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      Reference:['',[Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       MainMemberId:[this.userId]
     });
   }
@@ -46,19 +54,24 @@ export class AddBeneficiaryComponent implements OnInit {
       this.benefDetails.Name = this.addBeneficiaryForm.value.Name;
       this.benefDetails.AccountNumber = this.addBeneficiaryForm.value.AccountNumber;
       this.benefDetails.Reference = this.addBeneficiaryForm.value.Reference;
-      this.benefDetails.MainMemberId = this.addBeneficiaryForm.value.MainMemberId;
-
-      this.benefRequest.Beneficary = this.benefDetails;
-
-      this._benefService.AddBeneficiary(this.benefRequest).subscribe((result) => {
+      this.benefDetails.MainMemberId = this.userId;
+      console.log('We are here!');
+      console.log(JSON.stringify(this.benefDetails));
+      this._benefService.AddBeneficiary(this.benefDetails).subscribe((result) => {
           if (result.Success) {
-            this._uiService.snack('User has been successfully Added');
+            console.log('We are here!');
+            this._uiService.snack('Beneficiary has been successfully Added');
             this._uiService.hideLoading();
             this._router.navigateByUrl('/Home');
           } else {
-            this._uiService.toast('Something went wrong while saving, please try again or contact system support');
+            console.log('We are here!');            
             this._uiService.hideLoading();
+            this._uiService.toast('Something went wrong trying to add beneficiary!!');
           }
+      },err => {
+        console.log('failed to save!');
+        this._uiService.hideLoading();
+        this._uiService.toast(`${err}`);
       });        
   }  
 

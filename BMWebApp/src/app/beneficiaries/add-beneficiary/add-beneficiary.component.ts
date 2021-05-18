@@ -35,12 +35,7 @@ export class AddBeneficiaryComponent implements OnInit {
     }   
     console.log(`logeed in user is ${this._authService.currentUserValue.Id}`);
     this.userId = this._authService.currentUserValue.Id;
-    this._benefService.GetUserBeneficiaries(this.userId).subscribe(result => {
-      if (result.Success){
-        this.benefList = result.Data;
-      }
-    });
-
+    
     this.addBeneficiaryForm = this._formBuilder.group({
       Name:['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       AccountNumber:['',[Validators.required, Validators.minLength(9), Validators.maxLength(20)]],

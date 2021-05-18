@@ -34,43 +34,6 @@ export class BeneficiariesComponent implements OnInit {
   ];
 
   benefLiss: Beneficiary[];
-  benefLisst: Beneficiary[] = [ 
-    {
-      Id: 1,
-      Name: 'Celestine',
-      AccountNumber: '0933232323',
-      Reference: 'JadPort',
-      MainMemberId: 1
-    },
-    {
-      Id: 1,
-      Name: 'Johan',
-      AccountNumber: '096503233',
-      Reference: 'StrePorts',
-      MainMemberId: 1
-      },
-    {
-      Id: 1,
-      Name: 'Lizzie',
-      AccountNumber: '1093236343',
-      Reference: 'JorCenter',
-      MainMemberId: 1
-    },
-    {
-      Id: 1,
-      Name: 'Gavin',
-      AccountNumber: '10298730433',
-      Reference: 'DavClub',
-      MainMemberId: 1
-    },
-    {
-      Id: 1,
-      Name: 'Lucious',
-      AccountNumber: '9503703423',
-      Reference: 'ReiHarbor',
-      MainMemberId: 1
-    }
-  ];
 
   benefDisplayColumns: string[] = [
     'Name',
@@ -198,7 +161,7 @@ export class BeneficiariesComponent implements OnInit {
         this.loadBeneficiaries();
         const benefIndex = this.benefLiss.findIndex(x => x.AccountNumber == benef.AccountNumber);
         this.benefLiss.splice(benefIndex,1);
-        this.benefDataSource.data = this.benefLisst;
+        this.benefDataSource.data = this.benefLiss;
         this.benefDataSource.paginator = this.benefPaginator;
         this.benefDataSource.sort = this.benefSort;
         this._changeDetectedRefs.detectChanges();

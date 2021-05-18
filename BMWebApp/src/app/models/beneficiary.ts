@@ -5,3 +5,7 @@ export class Beneficiary {
     Reference: string;
     MainMemberId: number;
 }
+
+export class Beneficiaries {
+    Beneficiaries: Beneficiary[] = [];
+}

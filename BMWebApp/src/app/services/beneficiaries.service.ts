@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiResult } from '../models/api-result';
-import { Beneficiary } from '../models/beneficiary';
+import { Beneficiaries, Beneficiary } from '../models/beneficiary';
 import { BeneficiaryRequest } from '../models/request';
-import { UserAccount } from '../models/useraccount';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +19,18 @@ export class BeneficiariesService {
     return this._http.post<ApiResult<Beneficiary>>(`${this.baseApiUrl}/api/Beneficiary/AddBeneficiary`,beneficiaryRequest);
   }
 
-  UpdateBeneficiary(beneficiaryRequest: BeneficiaryRequest): Observable<ApiResult<Beneficiary>> {
-    return this._http.post<ApiResult<Beneficiary>>(`${this.baseApiUrl}/api/Beneficiary/UpdateBeneficiary`,beneficiaryRequest);
+  UpdateBeneficiary(beneficiaryRequest: Beneficiary): Observable<ApiResult<Beneficiary>> {
+    return this._http.put<ApiResult<Beneficiary>>(`${this.baseApiUrl}/api/Beneficiary/UpdateBeneficiary`,beneficiaryRequest);
   }
 
-  DeleteBeneficiary(beneficiaryRequest: BeneficiaryRequest): Observable<ApiResult<Beneficiary>> {
-    return this._http.post<ApiResult<Beneficiary>>(`${this.baseApiUrl}/api/Beneficiary/RemoveBeneficiary`, beneficiaryRequest);
+  DeleteBeneficiary(beneficiaryRequest: Beneficiary) {
+    return this._http.delete<ApiResult<Beneficiary>>(`${this.baseApiUrl}/api/Beneficiary/RemoveBeneficiary?benefId=${beneficiaryRequest.Id}`);
   }
-
-  GetUserBeneficiaries(user: number): Observable<ApiResult<Array<Beneficiary>>> {
-    return this._http.get<ApiResult<Array<Beneficiary>>>(`${this.baseApiUrl}/api/Beneficiary/GetBeneficiaries?userId=${user}`);
+  
+  GetUserBeneficiaries(user: number) {
+    return this._http.get<ApiResult<Beneficiaries>>(`${this.baseApiUrl}/api/Beneficiary/GetBeneficiaries?userId=${user}`).pipe(map(
+      res => {
+        return res.Data as Beneficiaries;
+      }));
   }
 }

@@ -55,11 +55,9 @@ export class AddBeneficiaryComponent implements OnInit {
       this.benefDetails.AccountNumber = this.addBeneficiaryForm.value.AccountNumber;
       this.benefDetails.Reference = this.addBeneficiaryForm.value.Reference;
       this.benefDetails.MainMemberId = this.userId;
-      console.log('We are here!');
-      console.log(JSON.stringify(this.benefDetails));
+      
       this._benefService.AddBeneficiary(this.benefDetails).subscribe((result) => {
-          if (result.Success) {
-            console.log('We are here!');
+          if (result.Success) {           
             this._uiService.snack('Beneficiary has been successfully Added');
             this._uiService.hideLoading();
             this._router.navigateByUrl('/Home');

@@ -70,16 +70,16 @@ namespace BeneficiaryManagement.API.Controllers
 
         [HttpDelete]
         [Route("RemoveBeneficiary")]        
-        public async Task<IActionResult> Delete([FromBody] Beneficiary beneficiary)
+        public async Task<IActionResult> Delete(int benefId)
         {
             using (var opTelemery = _telemetryClient.StartOperation<RequestTelemetry>("RemoveBeneficiary"))
             {
-                if (!ModelState.IsValid && beneficiary.Id == 0)
+                if (benefId == 0)
                     return BadRequest();
 
                 var model = new DeleteBeneficiaryCommandRequest()
                 {
-                    Beneficiary = beneficiary
+                    Beneficiary = benefId
                 };
 
                 var response = await Mediator.Send(model);

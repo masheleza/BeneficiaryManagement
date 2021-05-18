@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BM.common;
@@ -31,12 +32,16 @@ namespace Features.Core.Features.Beneficiary.Command
             {
                 try
                 {
-                    _bMDatabase.Beneficiaries.Remove(request.Beneficiary);
-                    _bMDatabase.SaveChanges();
-                    result = new ApiResult<DeleteBeneficiaryCommandResponse>()
+                    var beneficiary = _bMDatabase.Beneficiaries.Where(x => x.Id == request.Beneficiary).FirstOrDefault();
+                    if (beneficiary != null)
                     {
-                        Success = true,
-                    };
+                        _bMDatabase.Beneficiaries.Remove(beneficiary);
+                        _bMDatabase.SaveChanges();
+                        result = new ApiResult<DeleteBeneficiaryCommandResponse>()
+                        {
+                            Success = true,
+                        };
+                    }
                 }
                 catch (Exception ex)
                 {

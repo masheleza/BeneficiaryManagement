@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BM.common;
+using Features.Core.Features.Beneficiary.Messages;
 
 namespace Features.Core.Helpers
 {
@@ -13,6 +14,11 @@ namespace Features.Core.Helpers
         public ApiResult()
         {
             ErrorList = new List<CustomErrorHandler>();
+        }
+
+        public static implicit operator ApiResult<T>(ApiResult<GetBeneficiariesQueryResponse> v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

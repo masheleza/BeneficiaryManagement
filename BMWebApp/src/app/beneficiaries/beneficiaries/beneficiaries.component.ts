@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, Output, ViewChild } from '@angula
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource, ThemePalette } from '@angular/material';
 import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
+import { first } from 'rxjs/operators';
 import { Beneficiary } from 'src/app/models/beneficiary';
 import { BeneficiaryRequest } from 'src/app/models/request';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -31,8 +32,8 @@ export class BeneficiariesComponent implements OnInit {
     'Edit',
     'Delete'
   ];
-  benefList: Beneficiary[] = [];
-  
+
+  benefLiss: Beneficiary[];
   benefLisst: Beneficiary[] = [ 
     {
       Id: 1,
@@ -91,7 +92,7 @@ export class BeneficiariesComponent implements OnInit {
     private _changeDetectedRefs: ChangeDetectorRef,
     public dialog: MatDialog
   ) { 
-    this.benefDataSource = new MatTableDataSource();
+    this.benefDataSource = new MatTableDataSource();   
   }
 
 
@@ -101,16 +102,13 @@ export class BeneficiariesComponent implements OnInit {
     let data = JSON.parse(reqClone);
     console.log(JSON.stringify(data));
 
-    if (this._authService.currentUserValue === null) {
+    if (typeof this._authService.currentUserValue === 'undefined' || this._authService.currentUserValue === null) {
       this._router.navigateByUrl('/login');
     }
 
     this.userId = this._authService.currentUserValue.Id;
-  //  this.loadBeneficiaries();
-        this.benefDataSource.data = this.benefLisst;
-        this.benefDataSource.paginator = this.benefPaginator;
-        this.benefDataSource.sort = this.benefSort;
-        this._changeDetectedRefs.detectChanges();
+      this.loadBeneficiaries();
+      
   }
 
   ngAfterViewInit() {
@@ -149,20 +147,22 @@ export class BeneficiariesComponent implements OnInit {
       }
       return matchFound;
     };
-
-    this.benefDataSource.sort = this.benefSort;
   }
 
   loadBeneficiaries() {
-    this._benefService.GetUserBeneficiaries(this.userId).subscribe(result => {
-      if (result.Success && result.Data.length > 0) {
-        this.benefList = result.Data;
-        this.benefDataSource.data = this.benefLisst;
+    this._benefService.GetUserBeneficiaries(this.userId).pipe(first()).subscribe(result => {
+      console.log(JSON.stringify(result));     
+        console.log('set list');   
+        this.benefLiss = result.Beneficiaries;
+        console.log(JSON.stringify(this.benefLiss)); 
+        this.benefDataSource.data = this.benefLiss;
+        console.log('our datasourse');
+        console.log(JSON.stringify(this.benefDataSource.data));
         this.benefDataSource.paginator = this.benefPaginator;
         this.benefDataSource.sort = this.benefSort;
         this._changeDetectedRefs.detectChanges();
       }
-    });
+    );
   }
 
   searchBeneficiary(searchValue: string) {
@@ -193,12 +193,11 @@ export class BeneficiariesComponent implements OnInit {
 
   remove(benef: Beneficiary){
     console.log(JSON.stringify(benef));
-    this.benefRequest.Beneficary = benef;
-    this._benefService.DeleteBeneficiary(this.benefRequest).subscribe( result => {
+    this._benefService.DeleteBeneficiary(benef).subscribe( result => {
       if (result.Success){
         this.loadBeneficiaries();
-        const benefIndex = this.benefList.findIndex(x => x.AccountNumber == benef.AccountNumber);
-        this.benefList.splice(benefIndex,1);
+        const benefIndex = this.benefLiss.findIndex(x => x.AccountNumber == benef.AccountNumber);
+        this.benefLiss.splice(benefIndex,1);
         this.benefDataSource.data = this.benefLisst;
         this.benefDataSource.paginator = this.benefPaginator;
         this.benefDataSource.sort = this.benefSort;

@@ -64,16 +64,16 @@ export class EditBeneficiaryComponent implements OnInit {
     this.updateBenef.AccountNumber = this.editBenefForm.value['AccountNumber'];
     this.updateBenef.Reference = this.editBenefForm.value['Reference'];
     this.updateBenef.MainMemberId = this.editBenefForm.value['MainMemberId'];
-    
+   
     this.benefRequest.Beneficary = this.updateBenef;
 
     this._uiService.showLoading();
-    this._benefService.UpdateBeneficiary(this.benefRequest)
+    this._benefService.UpdateBeneficiary(this.updateBenef)
       .subscribe((result) => {
-        if (result.Data.valueOf() === true) {
+        if (result.Success === true) {
           this._uiService.snack('Use code has been successfully updated');
         } else {
-          this._uiService.toast('Something went wrong while saving, please try again or contact administrator');
+          this._uiService.toast('Something went wrong!');
         }
         this.dialogRef.close();
         this._uiService.hideLoading();        
